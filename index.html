@@ -176,6 +176,26 @@
     padding:32px;
   }
   .card-art svg{width:100%; height:100%; max-height:220px;}
+  .card-art--browser{padding:0; align-items:stretch;}
+  .browser-mock{
+    width:100%; display:flex; flex-direction:column;
+    border-radius:12px; overflow:hidden;
+    border:1px solid rgba(244,244,244,0.1);
+    box-shadow:0 20px 44px rgba(0,0,0,.35);
+  }
+  .browser-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:11px 14px; background:#18160F;
+    border-bottom:1px solid rgba(244,244,244,0.08);
+  }
+  .browser-bar .dot{width:9px; height:9px; border-radius:50%; flex-shrink:0;}
+  .browser-url{
+    flex:1; margin-left:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-soft);
+    background:rgba(244,244,244,0.05); border-radius:100px; padding:5px 12px;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .browser-mock img{width:100%; height:auto; display:block;}
   .card-body{padding:38px 40px;}
   .card-eyebrow{
     font-family:'IBM Plex Mono', monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
@@ -191,14 +211,23 @@
     font-family:'IBM Plex Mono', monospace; font-size:11.5px;
     background:var(--paper); border:1px solid var(--line); border-radius:100px; padding:4px 12px;
   }
-  .card-links{display:flex; gap:20px;}
+  .card-links{display:flex; flex-wrap:wrap; gap:12px;}
   .card-links a{
-    display:inline-flex; align-items:center; gap:6px;
-    text-decoration:none; font-size:13.5px; font-weight:600; color:var(--accent);
-    border-bottom:1px solid transparent; padding-bottom:2px;
-    transition:border-color .2s ease, gap .2s ease;
+    display:inline-flex; align-items:center; gap:8px;
+    text-decoration:none; font-size:13.5px; font-weight:600;
+    padding:11px 20px; border-radius:100px;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
   }
-  .card-links a:hover{border-color:var(--accent);}
+  .card-links a.btn-primary{
+    background:var(--accent); color:var(--paper);
+    box-shadow:0 8px 20px rgba(191,161,129,.18);
+  }
+  .card-links a.btn-primary:hover{background:var(--gold); transform:translateY(-2px); box-shadow:0 10px 24px rgba(191,161,129,.28);}
+  .card-links a.btn-secondary{
+    background:transparent; color:var(--ink); border:1px solid var(--line);
+  }
+  .card-links a.btn-secondary:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px);}
+  .card-links a svg{width:14px; height:14px; flex-shrink:0;}
 
   /* ---------- Education ---------- */
   .edu-list{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
@@ -364,16 +393,16 @@
 
         <!-- CommentSense -->
         <article class="card reveal">
-          <div class="card-art">
-            <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="18" y="120" width="26" height="60" rx="4" fill="#BFA181"/>
-              <rect x="56" y="90" width="26" height="90" rx="4" fill="#D4C5B0"/>
-              <rect x="94" y="60" width="26" height="120" rx="4" fill="#BFA181"/>
-              <rect x="132" y="100" width="26" height="80" rx="4" fill="#F4F4F4"/>
-              <rect x="170" y="40" width="26" height="140" rx="4" fill="#D4C5B0"/>
-              <path d="M18 44 Q60 10 120 30 T222 20" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.35"/>
-              <circle cx="222" cy="20" r="5" fill="#F4F4F4" opacity="0.6"/>
-            </svg>
+          <div class="card-art card-art--browser">
+            <div class="browser-mock">
+              <div class="browser-bar">
+                <span class="dot" style="background:#E5736B"></span>
+                <span class="dot" style="background:#E3B75C"></span>
+                <span class="dot" style="background:#6FAF8B"></span>
+                <span class="browser-url">commentsense-al2hrr5g9pta4h2ip55smk.streamlit.app</span>
+              </div>
+              <img src="assets/commentsense-screenshot.png" alt="CommentSense AI Analytics dashboard showing total comments, quality comment ratio, spam percentage, and average quality score">
+            </div>
           </div>
           <div class="card-body">
             <p class="card-eyebrow">✦ 01 · L'Oréal × Monash Datathon</p>
@@ -386,8 +415,14 @@
             </ul>
             <div class="card-tags"><span>Python</span><span>Streamlit</span><span>NLP</span><span>Sentiment Analysis</span></div>
             <div class="card-links">
-              <a href="https://commentsense-al2hrr5g9pta4h2ip55smk.streamlit.app/" target="_blank" rel="noopener">▶ Launch demo</a>
-              <a href="https://github.com/taabishfrl/CommentSense" target="_blank" rel="noopener">GitHub ↗</a>
+              <a class="btn-primary" href="https://commentsense-al2hrr5g9pta4h2ip55smk.streamlit.app/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Launch demo
+              </a>
+              <a class="btn-secondary" href="https://github.com/taabishfrl/CommentSense" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+                GitHub
+              </a>
             </div>
           </div>
         </article>
