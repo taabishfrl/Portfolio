@@ -187,6 +187,7 @@
     display:flex; align-items:center; gap:8px;
     padding:11px 14px; background:#18160F;
     border-bottom:1px solid rgba(244,244,244,0.08);
+    flex-shrink:0;
   }
   .browser-bar .dot{width:9px; height:9px; border-radius:50%; flex-shrink:0;}
   .browser-url{
@@ -195,7 +196,8 @@
     background:rgba(244,244,244,0.05); border-radius:100px; padding:5px 12px;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
-  .browser-mock img{width:100%; height:auto; display:block;}
+  .browser-shot{position:relative; min-height:300px; height:100%; background:#0f0e0c;}
+  .browser-shot img{position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:100%; object-fit:cover; object-position:top center;}
   .card-body{padding:38px 40px;}
   .card-eyebrow{
     font-family:'IBM Plex Mono', monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
@@ -401,7 +403,9 @@
                 <span class="dot" style="background:#6FAF8B"></span>
                 <span class="browser-url">commentsense-al2hrr5g9pta4h2ip55smk.streamlit.app</span>
               </div>
-              <img src="assets/commentsense-screenshot.png" alt="CommentSense AI Analytics dashboard showing total comments, quality comment ratio, spam percentage, and average quality score">
+              <div class="browser-shot">
+                <img src="assets/commentsense-screenshot.png" alt="CommentSense AI Analytics dashboard showing total comments, quality comment ratio, spam percentage, and average quality score">
+              </div>
             </div>
           </div>
           <div class="card-body">
