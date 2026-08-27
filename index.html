@@ -18,8 +18,16 @@
     --accent-soft:rgba(191,161,129,0.14);
     --gold:#D4C5B0;
     --line:rgba(244,244,244,0.12);
+    --pop-a:#E8A15B;
+    --pop-b:#E0637B;
+    --pop-c:#6FBFA6;
+    --pop-soft:rgba(224,99,123,0.14);
     --max:1180px;
     --r:22px;
+  }
+  .grad-text{
+    background:linear-gradient(115deg, var(--pop-a) 0%, var(--pop-b) 55%, var(--accent) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -65,14 +73,26 @@
   nav a:hover, nav a:focus-visible{background:var(--card); color:var(--ink);}
 
   /* ---------- Hero ---------- */
-  .hero{padding:56px 0 40px;}
+  .hero{padding:56px 0 40px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; top:-220px; right:-160px; width:620px; height:620px;
+    background:radial-gradient(circle, rgba(224,99,123,0.20) 0%, rgba(232,161,91,0.10) 45%, transparent 72%);
+    pointer-events:none; z-index:0;
+  }
+  .hero::after{
+    content:""; position:absolute; bottom:-260px; left:-180px; width:520px; height:520px;
+    background:radial-gradient(circle, rgba(111,191,166,0.14) 0%, transparent 70%);
+    pointer-events:none; z-index:0;
+  }
   .hero .wrap{
     display:grid; grid-template-columns:1.35fr 1fr; gap:64px; align-items:center;
+    position:relative; z-index:1;
   }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--accent); background:var(--accent-soft); padding:6px 14px; border-radius:100px;
+    color:var(--pop-b); background:var(--pop-soft); padding:6px 14px; border-radius:100px;
+    border:1px solid rgba(224,99,123,0.3);
     margin:0 0 24px;
   }
   h1{
@@ -81,7 +101,9 @@
     margin:0 0 24px;
   }
   h1 em{
-    font-style:italic; font-weight:500; color:var(--accent);
+    font-style:italic; font-weight:500;
+    background:linear-gradient(115deg, var(--pop-a) 0%, var(--pop-b) 55%, var(--accent) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   .lede{font-size:18px; color:var(--ink-soft); max-width:50ch; margin:0 0 28px;}
   .meta-row{display:flex; flex-wrap:wrap; gap:28px 36px; margin-bottom:8px;}
@@ -94,18 +116,21 @@
   .hero-photo-wrap{position:relative; justify-self:center; width:340px; max-width:100%;}
   .hero-photo{
     width:100%; max-width:340px; aspect-ratio:1/1.08; border-radius:var(--r);
-    overflow:hidden; background:var(--card); border:1px solid var(--line);
+    overflow:hidden; background:var(--card);
     position:relative;
+    padding:3px;
+    background:linear-gradient(155deg, var(--pop-a), var(--pop-b) 60%, var(--accent));
   }
-  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 22%;}
+  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 22%; border-radius:calc(var(--r) - 3px);}
   .badge-year{
     position:absolute; top:-14px; right:-18px;
     width:82px; height:82px; border-radius:50%;
-    background:var(--accent); color:var(--card);
+    background:linear-gradient(135deg, var(--pop-b), var(--pop-a));
+    color:var(--paper);
     display:flex; align-items:center; justify-content:center; text-align:center;
-    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.04em;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.04em; font-weight:600;
     transform:rotate(8deg);
-    box-shadow:0 8px 22px rgba(191,161,129,.3);
+    box-shadow:0 10px 26px rgba(224,99,123,.38);
   }
   .badge-year span{display:block;}
 
@@ -121,6 +146,10 @@
   .marquee-track span{
     font-family:'Fraunces', serif; font-style:italic; font-size:20px; color:var(--ink-soft);
     padding:0 26px; position:relative;
+  }
+  .marquee-track span:nth-child(3n+1){
+    background:linear-gradient(115deg, var(--pop-a), var(--pop-b));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   .marquee-track span::after{
     content:"✦"; font-style:normal; font-family:'IBM Plex Mono', monospace; font-size:12px;
@@ -142,13 +171,21 @@
     font-family:'Fraunces', serif; font-weight:440; font-size:clamp(28px,3.4vw,42px);
     margin:0 0 48px; letter-spacing:-.01em;
   }
-  .section-title em{font-style:italic; color:var(--accent); font-weight:500;}
+  .section-title em{
+    font-style:italic; font-weight:500;
+    background:linear-gradient(115deg, var(--pop-a), var(--pop-b) 60%, var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
 
   /* ---------- About ---------- */
   .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
   .about-grid p{margin:0 0 18px; color:var(--ink-soft); font-size:16.5px;}
   .about-grid p:last-child{margin-bottom:0;}
-  .about-grid p strong{color:var(--ink); font-weight:600;}
+  .about-grid p strong{
+    font-weight:600;
+    background:linear-gradient(115deg, var(--pop-a), var(--pop-b) 70%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
   .pill-list{display:flex; flex-wrap:wrap; gap:10px;}
   .pill{
     font-family:'IBM Plex Mono', monospace; font-size:12.5px;
@@ -206,7 +243,7 @@
   .card-body{padding:38px 40px;}
   .card-eyebrow{
     font-family:'IBM Plex Mono', monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:.07em;
-    color:var(--gold); margin:0 0 10px;
+    color:var(--pop-c); margin:0 0 10px;
   }
   .card-title{font-family:'Fraunces', serif; font-size:26px; font-weight:500; margin:0 0 6px;}
   .card-sub{font-size:13.5px; color:var(--ink-soft); margin:0 0 18px;}
@@ -237,18 +274,33 @@
   .card-links a svg{width:14px; height:14px; flex-shrink:0;}
 
   /* ---------- Education ---------- */
+  .edu-subhead{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft); margin:64px 0 20px;
+  }
   .edu-list{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .edu-card{
     background:var(--card); border:1px solid var(--line); border-radius:var(--r);
     padding:32px 34px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .edu-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+    border-color:rgba(232,161,91,.35);
   }
   .edu-year{
-    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--accent);
-    background:var(--accent-soft); display:inline-block; padding:5px 12px; border-radius:100px;
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    background:linear-gradient(115deg, var(--pop-a), var(--pop-b));
+    color:var(--paper); font-weight:600;
+    display:inline-block; padding:5px 12px; border-radius:100px;
     margin-bottom:16px;
   }
+  .edu-year--activity{background:linear-gradient(115deg, var(--pop-c), #4E9C86);}
   .edu-school{font-family:'Fraunces', serif; font-size:23px; margin:0 0 4px;}
-  .edu-course{color:var(--ink-soft); font-size:14.5px;}
+  .edu-course{color:var(--ink-soft); font-size:14.5px; margin:0 0 12px;}
+  .edu-detail{color:var(--ink-soft); font-size:14px; margin:0; padding-left:18px;}
+  .edu-detail li{margin-bottom:6px;}
 
   /* ---------- Contact ---------- */
   .contact-card{
@@ -267,15 +319,20 @@
     font-family:'Fraunces', serif; font-weight:440; font-size:clamp(30px,5vw,52px);
     margin:0 0 18px; line-height:1.1;
   }
-  .contact-title em{font-style:italic; color:var(--accent); font-weight:500;}
+  .contact-title em{
+    font-style:italic; font-weight:500;
+    background:linear-gradient(115deg, var(--pop-a), var(--pop-b) 60%, var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
   .contact-sub{color:var(--ink-soft); font-size:16px; max-width:46ch; margin:0 auto 34px;}
   .contact-cta{
     display:inline-flex; align-items:center; gap:10px;
-    background:var(--accent); color:var(--paper); text-decoration:none;
+    background:linear-gradient(115deg, var(--pop-a), var(--pop-b)); color:var(--paper); text-decoration:none;
     font-weight:600; font-size:15px; padding:16px 30px; border-radius:100px;
-    transition:transform .2s ease, background .2s ease;
+    transition:transform .2s ease, box-shadow .2s ease;
+    box-shadow:0 10px 26px rgba(224,99,123,.28);
   }
-  .contact-cta:hover{transform:translateY(-3px); background:var(--gold);}
+  .contact-cta:hover{transform:translateY(-3px); box-shadow:0 14px 32px rgba(224,99,123,.4);}
   .social-row{
     display:flex; justify-content:center; gap:28px; margin-top:44px;
     font-family:'IBM Plex Mono', monospace; font-size:13px;
@@ -336,7 +393,7 @@
         <p class="lede">Advanced Computer Science student at Monash University, working across data analytics, software engineering, and product design. A running list of things I've been building.</p>
         <div class="meta-row">
           <div class="meta-item"><span class="k">Based in</span><span class="v">Selangor, Malaysia</span></div>
-          <div class="meta-item"><span class="k">Focus</span><span class="v">Data · Software · UI/UX</span></div>
+          <div class="meta-item"><span class="k">Focus</span><span class="v grad-text" style="font-weight:600;">Data · Software · UI/UX</span></div>
           <div class="meta-item"><span class="k">Studying</span><span class="v">BCompSci, Monash '27</span></div>
         </div>
       </div>
@@ -491,6 +548,26 @@
           <span class="edu-year">2023 — 2024</span>
           <h3 class="edu-school">Taylor's University</h3>
           <p class="edu-course">Cambridge A-Levels</p>
+        </div>
+      </div>
+
+      <p class="edu-subhead">✦ Beyond the classroom</p>
+      <div class="edu-list">
+        <div class="edu-card reveal">
+          <span class="edu-year edu-year--activity">Society</span>
+          <h3 class="edu-school">Animal Welfare Society</h3>
+          <p class="edu-course">Member · Taylor's University</p>
+          <ul class="edu-detail">
+            <li>Took part in campus initiatives supporting animal welfare and awareness alongside coursework.</li>
+          </ul>
+        </div>
+        <div class="edu-card reveal">
+          <span class="edu-year edu-year--activity">Volunteering</span>
+          <h3 class="edu-school">Soup Kitchen</h3>
+          <p class="edu-course">Volunteer · while at Monash University</p>
+          <ul class="edu-detail">
+            <li>Volunteered preparing and distributing meals to those in need alongside university life.</li>
+          </ul>
         </div>
       </div>
     </div>
